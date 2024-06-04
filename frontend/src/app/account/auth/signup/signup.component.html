@@ -1,0 +1,79 @@
+<div class="account-pages my-5 pt-sm-5" *ngIf="!authResponse.mfaEnabled">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="card-body pt-0">
+            <div class="p-2" >
+              <br><br>
+              <form class="needs-validation" name="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()"
+                novalidate>      
+
+                <div class="mb-3">
+                  <label for="username" class="form-label">Nom</label>
+                  <input type="text" formControlName="firstname" class="form-control"  placeholder="firstname"/>
+
+                </div>
+
+                <div class="mb-3">
+                  <label for="lastname" class="form-label">Prenom</label>
+                  <input type="text" formControlName="lastname" class="form-control" id="lastname" placeholder="last name"/>  
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" formControlName="email" class="form-control" id="email" placeholder=" e-mail"/>
+                </div>
+
+                <div class="mb-3">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input type="password" formControlName="password" class="form-control"  id="password" placeholder="password" />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Role</label>
+                  <select formControlName="role" class="form-control">
+                    <option value="Parent">Parent</option>
+                    <option value="Babysitter">Babysitter</option>
+                  </select>
+                </div>
+                <div class="mb-3 d-flex align-items-center"> 
+                  <h6 class="mr-3">Genre</h6>
+                  &nbsp;&nbsp;&nbsp;
+                  <label for="r1" class="mr-2">
+                    <input type="radio" id="r1" id="sexe" formControlName="sexe" [value]="'male'">&nbsp;
+                    <span class="label-text">Homme</span>
+                  </label>
+                
+                  <label for="r2" class="mr-2">
+                    <input type="radio" id="r2" id="sexe"  formControlName="sexe" [value]="'female'" >&nbsp;
+                    <span class="label-text">Femme</span>
+                  </label>
+                </div>
+
+
+                <div class="mt-4 d-grid">
+                  <button class="btn btn-primary"  type="submit" [disabled] ="signupForm.invalid">SignUp</button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <p>Already have ? <a routerLink="/account/login" class="fw-medium text-primary">SignIn</a>
+          </p>  
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

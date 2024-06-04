@@ -1,0 +1,47 @@
+/* Styles pour la barre latérale */
+.vertical-menu {
+    background-color: #ffffff; /* Couleur de fond de la barre latérale */
+    width: 250px; /* Largeur de la barre latérale */
+}
+
+#sidebar-menu {
+    padding: 20px; /* Espacement intérieur de la barre latérale */
+}
+
+.metismenu {
+    list-style: none; /* Supprime les puces de la liste */
+    margin: 0; /* Supprime les marges de la liste */
+    padding: 0; /* Supprime les rembourrages de la liste */
+}
+
+.metismenu > li {
+    margin-bottom: 10px; /* Espacement entre les éléments de menu */
+}
+
+.metismenu > li > a {
+    display: block; /* Affichage en bloc pour remplir l'espace horizontal */
+    color: #555; /* Nouvelle couleur du texte des éléments de menu */
+    text-decoration: none; /* Supprime les soulignements du texte */
+    padding: 10px; /* Espacement intérieur de chaque élément de menu */
+}
+
+.metismenu > li.menu-title {
+    color: #777; /* Couleur du texte des titres de menu */
+    font-size: 14px; /* Taille de police des titres de menu */
+    font-weight: bold; /* Poids de la police des titres de menu */
+}
+
+.metismenu .sub-menu {
+    display: none; /* Masquer les sous-menus par défaut */
+}
+
+.metismenu .sub-menu.mm-collapse {
+    display: block; /* Afficher les sous-menus déroulés */
+}
+
+/* Styles pour les liens actifs dans la barre latérale */
+.metismenu > li > a.active {
+    background-color: #f0f0f0; /* Couleur de fond pour les éléments de menu actifs */
+    color: #007bff; /* Couleur du texte pour les éléments de menu actifs */
+    font-weight: bold; /* Poids de la police pour les éléments de menu actifs */
+}

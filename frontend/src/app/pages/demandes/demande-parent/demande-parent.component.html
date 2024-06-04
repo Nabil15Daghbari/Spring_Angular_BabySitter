@@ -1,0 +1,138 @@
+<br><br><br>
+<div class="">
+    <div class="datatable">
+      <table class="table">
+        <thead class="datatable-header">
+          <tr>
+            <th>
+              <strong>
+                {{'ID' }}
+              </strong>
+            </th>
+            <th>
+              <strong>
+                Nom & Prenom
+              </strong>
+            </th>
+            <th>
+                <strong>
+                  Type service
+                </strong>
+             </th>
+            <th>
+              <strong>
+                Adresse
+              </strong>
+            </th>
+            <th>
+              <strong>
+               Status
+              </strong>
+            </th>
+             <th>
+              <strong>
+                {{'Action' }}
+              </strong>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="row-data" *ngFor="let demande of listDemande"> 
+            <td>
+                {{demande.id}}
+            </td>
+            <td>
+                {{demande.nom}}  {{demande.prenom}}
+            </td>
+            <td>
+                {{demande.announcement.typeService}}  
+            </td>
+            <td>
+               {{demande.adresse}}
+            </td>
+            <td class="text-warning">
+                {{demande.status}}
+            </td>
+            <td  >
+              <ng-container class="ml-auto">
+                <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="selectedDemande(demande.id )" (click)="verificationModal(contentDEtail)" ><i class="fas fa-align-left"></i></button>&nbsp;
+                <button  class="dropdown" ngbDropdown placement="bottom-right">
+                  <a class="dropdown-toggle card-drop" data-toggle="dropdown" ngbDropdownToggle aria-expanded="false">
+                    <i class="fas fa-th-large text-primary font-size-18"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu >  
+                    <li><a  class="dropdown-item"  (click)="updateStatusDemande(demande.id, 'Disqualifié')">Disqualifié</a></li>
+                    <li><a  class="dropdown-item" (click)="updateStatusDemande(demande.id, 'Pré-sélection')">Pré-sélection</a></li>
+                    <li><a  class="dropdown-item" (click)="updateStatusDemande(demande.id, 'Accepté')">Accepté</a></li>
+
+                  </ul>
+                </button>   
+              </ng-container>
+
+            </td>
+          </tr>
+        </tbody>
+        <br><br>
+      </table>
+    </div>
+
+ 
+  </div>
+
+
+
+  
+  <ng-template #contentDEtail let-modal>
+    <div class="modal-header"> 
+      <h5 class="modal-title mt-0">Request details </h5>
+    </div>
+    <div  *ngIf="demandeSelected">
+      <div class="row">
+        <div class="col-xl-12 col-sm-6">
+          <div class="card">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="p-4 text-center text-xl-start">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-info">Nom & Prenom </p>
+                        <h6>{{demandeSelected.nom}} {{demandeSelected.prenom}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-info">Type de service</p>
+                        <h6>{{demandeSelected.announcement.typeService}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-info">Adresses</p>
+                        <h6>{{demandeSelected.adresse}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-info">Documents</p>
+                        <p *ngFor="let file of demandeSelected.document">
+                          <i class="mdi mdi-chevron-right text-secondary me-1"></i> &nbsp;
+                          <a [href]="file.url" download="{{file.name}}" class="text-decoration-underline  text-secondary">
+                            {{file.name}} 
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+ 

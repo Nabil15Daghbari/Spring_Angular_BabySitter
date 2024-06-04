@@ -1,0 +1,297 @@
+<br><br><br>
+
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card overflow-hidden">
+                            <div class="bg-info bg-soft">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="text-info p-5">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-5 align-self-end">
+                                        <br><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="avatar-md profile-user-wid mb-4">
+                                            <div class="profile-image-container">
+                                                <img *ngIf="imageConditionAffichage" [src]="image.safeUrl" alt="" width="100px" height="100px" class="rounded-circle blue-border"
+                                                    class="rounded-circle blue-border">
+                                                     <img *ngIf="!imageConditionAffichage" [src]="getImageProfilByGener()" alt="" width="100px" height="100px" class="rounded-circle blue-border">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="pt-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-6">
+                                                    <h5 class="font-size-15 text-truncate">{{ userConnected.firstname }} {{ userConnected.lastname }}</h5>
+                                                </div>
+                                                <div class="col-6 text-center">
+                                                    <button class="btn btn-primary" (click)="centerModal(centerDataModal)">Modifier</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs">
+                            <li [ngbNavItem]="1">
+                                <a ngbNavLink>
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block">General informations</span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                                <a ngbNavLink>
+                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                    <span class="d-none d-sm-block">Modifier les informations </span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="3">
+                                <a ngbNavLink>
+                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                                    <span class="d-none d-sm-block">Changer mot de passe</span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="changepassword"></ng-template>
+                                </ng-template>
+                            </li>
+
+                        </ul>
+                        <div [ngbNavOutlet]="nav"></div>
+                    </div>
+                </div>
+            </div><!-- End Default Tabs -->
+            <!-- end col -->
+
+        </div>
+
+    </div>
+</div>
+
+
+<ng-template #TabContent>
+    <div class="col-lg-12">
+        <div class="card">
+            <br><br>
+            <div>
+                <div class="table-responsive">
+                    <table class="table table-nowrap mb-0">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Nom Pprenom :</th>
+                                <td>{{userConnected.firstname}}
+                                    {{userConnected.lastname}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email :</th>
+                                <td>{{userConnected.email}} </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Telephone :</th>
+                                <td >
+                                    {{userConnectedById.parent?.telephone}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address :</th>
+                                <td >
+                                    {{userConnectedById.parent?.adresse}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Code postal:</th>
+                                <td >
+                                    {{userConnectedById.parent?.codePostal}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Tab Content -->
+<ng-template #TabContent1>
+    <form (ngSubmit)="onUpdateSuperUserInterne()" [formGroup]="profilFormSuperUserInterne">
+        <div>
+            <div class="row">
+                <div class="col-md-12 p-3">
+                    <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                        <div class="form-group col-md-5">
+                            <label for="firstname">Nom </label>
+                            <input formControlName="firstname" class="form-control" id="firstname" placeholder="nom" />
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="lastname">Prenom</label>
+                            <input formControlName="lastname" class="form-control" id="lastname" placeholder="Prénom" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 p-3">
+                    <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                        <div class="form-group col-md-5">
+                            <label for="email">Email</label>
+                            <input formControlName="email" class="form-control" id="email" placeholder="email" />
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="adresse">Address</label>
+                            <input formControlName="adresse" class="form-control" id="adresse" placeholder="Adresse" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 p-3">
+                    <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                        <div class="form-group col-md-5">
+                            <label>Telephone</label>
+                            <input formControlName="telephone" class="form-control" id="telephone" placeholder="nom" />
+
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="revisionEffectuee">Code Postal</label>
+                            <input formControlName="codePostal" class="form-control" id="codePostal"
+                                placeholder="Code postal" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-inline wizard mb-0">
+                <li class="next list-inline-item float-end">
+                    <button type="submit" class="btn btn-primary" >Enregistrer</button>
+                </li>
+            </ul>
+        </div>
+        <br>
+
+    </form>
+</ng-template>
+
+<ng-template #changepassword>
+    <br><br>
+    <form (ngSubmit)="OnSubmit()" [formGroup]="changePasswordForm">
+       
+        <div class="form-group row">
+            <label for="currentPassword" class="col-lg-4 col-form-label form-control-label">Ancien mot de passe</label>
+            <div class="col-lg-4">
+                <input type="password" formControlName="currentPassword" class="form-control" id="currentPassword"
+                    placeholder="Old password" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="newPassword" class="col-lg-4 col-form-label form-control-label">Nouveau mot de passe</label>
+            <div class="col-lg-4">
+                <input type="password" formControlName="newPassword" class="form-control" id="newPassword"
+                    placeholder="New password" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-lg-4 col-form-label form-control-label" for="confirmationPassword">Confirmer le mot de passe</label>
+            <div class="col-lg-4">
+                <input type="password" formControlName="confirmationPassword" class="form-control"
+                    id="confirmationPassword" placeholder="Confirmer mot de passe"
+                    />
+            </div>
+        </div>
+
+        <ul class="list-inline wizard mb-0">
+            <li class="next list-inline-item float-end">              
+                <button type="submit" class="btn btn-primary">Enregistrer</button> 
+            </li>
+        </ul>
+    </form>
+</ng-template>
+
+
+
+<ng-template #centerDataModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">Télécharger  image</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body text-center">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-info" (click)="centerModalUpload(centerDataModalUpload)">
+                    Télécharger  image
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-danger" (click)="delete()">
+                    Supprimer une photo
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+ 
+
+
+
+<ng-template #centerDataModalUpload let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0"> Choisir une photo de profil</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="button-upload">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 p-3">
+                  <div class="row" >
+                    <div class="form-group col-md-4">
+                        <div class="col-md-1 mb-3 mt-3">
+                            <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
+                                <div class="col-sm-4">
+                                    <div class="avatar-md profile-user-wid mb-4  col-xl-2">
+                                        <div>
+                                            <img [src]="getImageProfilUpload()" alt="" width="120px" height="120px" class="rounded-circle blue-border">
+                                            <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)">
+                                        </div>
+                                    </div>
+                                </div>  
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="col-md-12 mb-3 mt-3">
+                            <button class="btn btn-info"  (click)="uploadImage()" > Enregistrer </button>
+                            <button class="btn btn-secondary" (click)="modal.dismiss('Cross click')" aria-hidden="true"> Annuler</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

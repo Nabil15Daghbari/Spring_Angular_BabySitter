@@ -1,0 +1,45 @@
+<br><br>
+<div class="custom-container carte-espace" *ngFor="let demande of listDemande">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div>
+            <div>               
+              <div class="row"> 
+                <div class="col-xl-4">
+                  <div class="text-muted mt-4">
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i> <strong>Nombre Enfant :</strong> &nbsp;
+                      {{demande.announcement.nombreEnfant}}</p>
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i><strong>Adresse : </strong> &nbsp;
+                     {{demande.adresse}}</p>
+                  </div>
+                </div>
+                <div class="col-xl-4">
+                  <div class="text-muted mt-4">
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i><strong>Nom  Babysitter :</strong> &nbsp;
+                      {{demande.nom}}</p>
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i> <strong>Prénom  Babysitter : </strong> &nbsp;
+                      {{demande.prenom}}</p>
+                  </div>  
+                </div>
+                <div class="col-xl-4">
+                  <div class="text-muted mt-4">
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i> <strong>Nom Prent : </strong> &nbsp;
+                        {{demande.announcement.parent.user.firstname}}
+                    </p>
+                    <p><i class="mdi mdi-chevron-right text-primary me-1"></i><strong>Prenom Parent: </strong> &nbsp;
+                    {{demande.announcement.parent.user.lastname}}
+                    </p>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+

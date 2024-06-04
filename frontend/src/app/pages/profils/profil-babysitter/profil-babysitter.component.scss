@@ -1,0 +1,89 @@
+/* Style pour centrer le bouton EDIT */
+button {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Style pour afficher le nom complet */
+.font-size-15 {
+    font-size: 15px;
+}
+
+.text-truncate {   
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}   
+
+/* Alignement vertical du nom complet */
+.row {
+    align-items: center;
+}
+
+
+/* Style pour le titre de la modal */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style pour les boutons de la modal */
+.btn {
+    margin: 5px;
+}
+
+/* Style pour les icônes des boutons */
+.btn i {
+    margin-right: 5px;
+}
+
+
+/* Styles pour la modal-header */
+.modal-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .modal-title {
+    color: #007bff;
+    margin-top: 0;
+}
+
+/* Styles pour la modal-body */
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body .row {
+    margin-bottom: 20px;
+}
+
+.modal-body button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles spécifiques pour les boutons */
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border: 1px solid #17a2b8;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+}
+
+/* Styles pour les boutons lorsqu'ils sont survolés */
+.btn-info:hover,
+.btn-danger:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}

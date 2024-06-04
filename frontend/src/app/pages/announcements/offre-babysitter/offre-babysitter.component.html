@@ -1,0 +1,110 @@
+<div class="row ">
+  <div class="col-lg-4" *ngFor="let offre of   listAnnouncementBabySitter ">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="job-info">Nombre enfant : </label>
+          <span style="margin-left: 20px;">{{offre.nombreEnfant}}</span>
+        </div>
+        <hr>
+        <br>
+        <form>
+          <div class="form-group">
+            <label class="job-info"> Type service :</label>
+            <span style="margin-left: 20px;">{{offre.typeService}}</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label class="job-info">Date: </label>
+            <span style="margin-left: 20px;">{{offre.date}}</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label class="job-info">Heure Debut:</label>
+            <span style="margin-left: 20px;">{{offre.heureDebut}}</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label class="job-info">Heure Fin:</label>
+            <span style="margin-left: 20px;">{{offre.heureFin}}</span>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label class="job-info">Adresse:</label>
+            <span style="margin-left: 20px;">{{offre.adresse}}</span>
+          </div>
+          <hr>
+
+          <div >
+            <button class=" btn-info" (click)="selectedAnnouncement(offre.id , avis)">List des avis </button>
+            <button class=" btn-info float-end" (click)="selectedAnnouncement(offre.id , content)">Avis </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Gérer un avis </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')">
+    </button>
+  </div>
+  <div>
+    <div class="kyc-tab-content">
+      <form [formGroup]="avisForm">
+        <div>
+          <div>
+            <div class="col-md-12 p-3">
+              <div class="row" style="display: flex; justify-content: center; align-items: center;">
+
+                <div class="form-group col-md-10">
+                  <label for="contenu">{{'Contenu' | translate}}</label>
+                  <textarea type="text" formControlName="contenu" class="form-control" id="contenu"
+                    placeholder="contenu"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="list-inline wizard mb-0">
+
+          <li class="next list-inline-item float-end">
+            <button class="btn btn-primary" (click)="saveAvis()">Enregistrer</button>
+          </li>
+        </ul>
+        <br>
+
+
+      </form>
+    </div>
+    <br>
+  </div>
+</ng-template>
+
+
+<ng-template #avis let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Avis</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')"></button>
+  </div>
+  <div class="kyc-tab-content" >
+    <div class="mt-10" *ngFor="let avis of listAvis">
+      <div class="media border-bottom">
+        <div class="media-body">
+          <h5 class="mt-0 mb-1 font-size-15">{{avis.parent.user.firstname}} {{avis.parent.user.lastname}}</h5>
+          <p class="text-muted">{{avis.contenu}}</p>
+          <ul class="list-inline float-sm-end">
+            <li class="list-inline-item">
+              <div class="text-muted font-size-12">
+                <i class="far fa-calendar-alt text-primary me-1"></i> {{avis.date}}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

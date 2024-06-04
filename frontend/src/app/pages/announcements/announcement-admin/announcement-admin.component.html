@@ -1,0 +1,99 @@
+<br><br><br>
+
+
+<div class="">
+    <div class="datatable">
+
+        <table class="table">
+            <thead class="datatable-header">
+                <tr>
+                    <th>
+                      
+                        Nombre enfant
+                     
+                    </th>
+                    <th>
+                      
+                           Type service
+                     
+                    </th>
+                    <th>
+                      
+                           Date
+                     
+                    </th>
+                    <th>
+                      
+                          Heure Debut
+                     
+                    </th>
+                    <th>
+                    
+                        Heure Fin
+                   
+                  </th>
+                  <th>
+                   
+                    Adresse
+                   
+                </th>
+                <th>
+                 
+                  Status
+                  
+                </th>
+                    <th>
+                      
+                            {{'Action' | translate}}
+                       
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+        
+            <tr class="row-data" *ngFor="let service of announcements">
+          <td>
+            {{service.nombreEnfant}}
+          </td>
+          <td>
+            {{service.typeService}}
+          </td>
+          <td>
+            {{service.date}}
+          </td>
+          <td>
+            {{service.heureDebut}}
+          </td>
+          <td>
+            {{service.heureFin}}
+          </td>
+          <td>
+            {{service.adresse}}
+          </td>
+          <td>
+            {{service.status}}
+          </td>
+          <td  >
+            <ng-container class="ml-auto">
+                <button  class="dropdown" ngbDropdown placement="bottom-right">
+                    <a class="dropdown-toggle card-drop" data-toggle="dropdown" ngbDropdownToggle aria-expanded="false">
+                      <i class="fas fa-th-large text-primary font-size-18"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu >  
+                      <li><a  class="dropdown-item"  (click)="updateStatusDemande(service.id, 'Accepter')">Accepter</a></li>
+                      <li><a  class="dropdown-item" (click)="updateStatusDemande(service.id, 'Refuser')">Refuser</a></li>
+  
+                    </ul>
+                  </button>   
+            </ng-container>
+          </td>
+        </tr>
+   
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,94 @@
+
+<br>
+<br>
+ 
+
+
+<div class="">
+  <div class="datatable">
+    <table class="table" >
+      <thead class="datatable-header">
+        <tr>
+            <th>
+              <strong>
+                {{'ID' }}
+              </strong>
+            </th>
+            <th>
+              <strong>
+                {{'Last Name' }}
+              </strong>
+            </th>
+            <th>
+              <strong>
+                {{'First name' }}
+              </strong>
+            </th>
+            <th>
+              <strong>
+                Email
+              </strong>
+            </th>
+            <th>
+              <strong>
+               Status
+              </strong>
+            </th>
+             <th>
+              <strong>
+                {{'Action' }}
+              </strong>
+            </th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        <tr class="row-data" *ngFor="let responsible of ListeBabySitter">
+          <td>
+            {{responsible.id}}
+          </td>
+          <td>
+            {{responsible.firstname}}
+          </td>
+          <td>
+            {{responsible.lastname}}
+          </td>
+          <td>
+            {{responsible.email}}
+          </td>
+          <td>
+            <i *ngIf="responsible.status == 'En attente'" style="color: #ff9800;" class="fas  me-1"> En attente</i>
+            <i *ngIf="responsible.status == 'Refuse'" class="fas  text-danger me-1">
+              {{responsible.status}}</i>
+            <i *ngIf="responsible.status == 'Accept'" class="fas  text-success me-1">
+              {{responsible.status}}</i>
+          </td>
+          <td  >
+            <ng-container class="ml-auto">
+
+              <button  class="dropdown" ngbDropdown placement="bottom-right">
+                <a class="dropdown-toggle card-drop" data-toggle="dropdown" ngbDropdownToggle aria-expanded="false">
+                  <i class="btn btn-danger btn-sm btn-rounded fas fa-user-times font-size-13"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu >  
+                  <li><a  class="dropdown-item"  (click)="updateStatus(responsible.id,1)"> &nbsp;Accepted</a></li>
+                  <li><a  class="dropdown-item" (click)="updateStatus(responsible.id,0)"> &nbsp; Refused</a></li>
+                </ul>
+              </button>
+  
+            </ng-container>
+
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+ 
+
+
+
+
+
+</div>
+

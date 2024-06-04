@@ -1,0 +1,247 @@
+<br>
+<br>
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex gap-2">
+            <button class="btn btn-add btn-primary" (click)="verificationModal(content)" data-toggle="modal"
+                data-target="#verificationModal">
+                &nbsp; Ajouter
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="">
+    <div class="datatable">
+
+        <table class="table">
+            <thead class="datatable-header">
+                <tr>
+                    <th>
+                        <strong>
+                            Nombre enfant
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Type service
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Date
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Heure Debut
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Heure Fin
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Adresse
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Status
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            {{'Action' | translate}}
+                        </strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+
+                <tr class="row-data" *ngFor="let service of announcements">
+                    <td>
+                        {{service.nombreEnfant}}
+                    </td>
+                    <td>
+                        {{service.typeService}}
+                    </td>
+                    <td>
+                        {{service.date}}
+                    </td>
+                    <td>
+                        {{service.heureDebut}}
+                    </td>
+                    <td>
+                        {{service.heureFin}}
+                    </td>
+                    <td>
+                        {{service.adresse}}
+                    </td>
+                    <td>
+                        {{service.status}}  
+                    </td>
+                    <td>
+                        <ng-container class="ml-auto">
+                            <button type="button" class="btn btn-info btn-sm btn-rounded"><i class="fas fa-edit" (click)="onClickEdit(service.id! , content)"></i></button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-sm btn-rounded"(click)="onClickDelete(service.id!)"><i class="fas fa-trash-alt"></i></button>&nbsp;
+                        </ng-container>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <!---
+
+    <ng-template #contentDEtail let-modal>
+    <div class="modal-header"> 
+      <h5 class="modal-title mt-0">Announcement details </h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="hidenModal()">
+      </button>
+    </div>
+    <div  *ngIf="serviceSelected">
+      <div class="row">
+        <div class="col-xl-12 col-sm-6">
+          <div class="card">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="p-4 text-center text-xl-start">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Id</p>   
+                        <h6>{{serviceSelected.id}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Title</p>
+                        <h6>{{serviceSelected.title}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Creation Date</p>
+                        <h6>{{serviceSelected.startDate}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Expiration date</p>
+                        <h6>{{serviceSelected.endDate}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Publication date</p>
+                        <h6>{{serviceSelected.publicationDate}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Deadline application</p>
+                        <h6>{{serviceSelected.applicationDeadLine}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex flex-column">
+                        <p class="text-muted mb-2 text-truncate" class="mt-1 mb-3 text-primary">Description</p>
+                        <h6>
+                          {{serviceSelected.description}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </ng-template>
+-->
+
+
+
+
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">Gerer les offres</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')">
+        </button>
+    </div>
+    <div>
+        <div class="kyc-tab-content">
+            <form [formGroup]="announcementForm">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12 p-3">
+                            <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                                <div class="form-group col-md-5">
+                                    <label for="nombreEnfant">Nombre d'enfant</label>
+                                    <input type="number" formControlName="nombreEnfant" class="form-control"
+                                        id="nombreEnfant" placeholder="nombreEnfant" />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="typeService">{{'Type Service' | translate}}</label>
+                                    <input type="text" formControlName="typeService" class="form-control"
+                                        id="typeService" placeholder="nom abonnement" />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="date">{{'Date' | translate}}</label>
+                                    <input type="date" formControlName="date" class="form-control" id="date" />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="heureDebut">{{'Heure Debut' | translate}}</label>
+                                    <input type="String" formControlName="heureDebut" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="heureFin">{{'Heure Fin' | translate}}</label>
+                                    <input type="String" formControlName="heureFin" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>{{'Adresse' | translate}}</label>
+                                    <input type="text" formControlName="adresse" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-inline wizard mb-0">
+
+                    <li class="next list-inline-item float-end">
+                        <button class="btn btn-primary" (click)="OnSaveAnnouncement()">Save</button>
+                    </li>
+                </ul>
+                <br>
+
+
+            </form>
+        </div>
+        <br>
+    </div>
+</ng-template>

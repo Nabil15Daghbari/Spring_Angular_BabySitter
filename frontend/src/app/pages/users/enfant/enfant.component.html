@@ -1,0 +1,158 @@
+<br>
+<br>
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex gap-2">
+            <button class="btn btn-add btn-primary" (click)="verificationModal(content)" data-toggle="modal"
+                data-target="#verificationModal">
+                &nbsp; Ajouter
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="">
+    <div class="datatable">
+
+        <table class="table">
+            <thead class="datatable-header">
+                <tr>
+                    <th>
+                        <strong>
+                           Nom
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Prenom
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                           Categorie 
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                           Sexe
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Age
+                        </strong>
+                    </th>
+                    <th>
+                        <strong>
+                            Adresse
+                        </strong>
+                    </th>
+                   
+                    <th>
+                        <strong>
+                            {{'Action' }}
+                        </strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+
+                <tr class="row-data" *ngFor="let service of listEnfant">
+                    <td>
+                        {{service.nom}}
+                    </td>
+                    <td>
+                        {{service.prenom}}
+                    </td>
+                    <td>
+                        {{service.category}}
+                    </td>
+                    <td>
+                        {{service.sexe}}
+                    </td>
+                    <td>
+                        {{service.age}}
+                    </td>
+                    <td>
+                        {{service.adresse}}
+                    </td>
+                 
+                    <td>
+                        <ng-container class="ml-auto">
+                            <button type="button" class="btn btn-info btn-sm btn-rounded"><i class="fas fa-edit" (click)="onClickEdit(service.id! , content)"></i></button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-sm btn-rounded"(click)="onClickDelete(service.id!)"><i class="fas fa-trash-alt"></i></button>&nbsp;
+                        </ng-container>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">Gerer les offres</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')">
+        </button>
+    </div>
+    <div>
+        <div class="kyc-tab-content">
+            <form [formGroup]="enfantForm">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12 p-3">
+                            <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                                <div class="form-group col-md-5">
+                                    <label for="nombreEnfant">Nom </label>
+                                    <input type="text" formControlName="nom" class="form-control"
+                                        id="nombreEnfant" />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="typeService">Prenom</label>
+                                    <input type="text" formControlName="prenom" class="form-control"
+                                        id="typeService"  />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="date">Categorie</label>
+                                    <input type="text" formControlName="category" class="form-control" id="date" />
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="heureDebut">Sexe</label>
+                                    <input type="String" formControlName="sexe" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="heureFin">Age</label>
+                                    <input type="String" formControlName="age" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>{{'Adresse' }}</label>
+                                    <input type="text" formControlName="adresse" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-inline wizard mb-0">
+
+                    <li class="next list-inline-item float-end">
+                        <button class="btn btn-primary" (click)="OnSaveAnnouncement()">Save</button>
+                    </li>
+                </ul>
+                <br>
+
+
+            </form>
+        </div>
+        <br>
+    </div>
+</ng-template>

@@ -1,0 +1,41 @@
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+      <!-- LOGO 
+      <div class="navbar-brand-box">
+        <a  class="logo logo-light">
+          <span class="logo-sm">
+            <img src="assets/images/Inter.png" alt="" width="60" height="60">
+          </span>
+          <span class="logo-lg">
+            <img src="assets/images/Inter.png" alt="" width="60" height="60">
+          </span>
+        </a>
+      </div>
+     -->
+    </div>
+    <div class="d-flex">
+
+    
+      <div class="dropdown d-inline-block" ngbDropdown>
+        <button type="button" class="btn header-item" ngbDropdownToggle id="page-header-user-dropdown">
+          <img *ngIf="topbarImageUser && topbarImageUser" class="rounded-circle header-profile-user" [src]="topbarImageUser" alt="Header Avatar">
+          <img *ngIf="!topbarImageUser || !topbarImageUser" [src]="getImageProfilUpload()" class="rounded-circle header-profile-user">
+          <span class="d-none d-xl-inline-block ms-1">{{userConnected.firstname}} {{userConnected.lastname}} </span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+          <!-- item-->
+          <a class="dropdown-item" (click)="navigationprofil()"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+            {{ 'HEADER.LOGIN.PROFILE' | translate}}</a> 
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()"><i
+              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
+            {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
+        </div>
+      </div>
+
+
+     
+    </div>
+  </div>
+</header>
