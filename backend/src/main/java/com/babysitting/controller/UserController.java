@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.babysitting.enm.Role;
 import com.babysitting.exception.MessageResponse;
 import com.babysitting.exception.NotFoundException;
+import com.babysitting.model.ChangePasswordRequest;
 import com.babysitting.model.User;
 import com.babysitting.service.UserService;
 import com.babysitting.service.Impl.UserServieImpl;
@@ -34,7 +35,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api/user")
 @CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
-//@PreAuthorize("hasAnyRole('ADMINISTRATEUR' , 'CLIENT' , 'TECHNICIEN' ) ")
 public class UserController {
 
 	
@@ -42,8 +42,8 @@ public class UserController {
     private final UserServieImpl userServieImpl ;
 
 	@PostMapping("")
-	public ResponseEntity<User> create(@RequestBody @Valid User fournisseur) {
-		User response = userService.create(fournisseur);
+	public ResponseEntity<User> create(@RequestBody @Valid User user) {
+		User response = userService.create(user);  
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
@@ -76,12 +76,12 @@ public class UserController {
 		return new ResponseEntity<>("user supprimé avec succes", HttpStatus.OK);
 	}
 
-	/*
+	
 	@PatchMapping("/change-password") 
 	public  ResponseEntity<String> changePassword( @RequestBody ChangePasswordRequest request ,  Principal connectedUser){
 		userService.changePassword(request ,connectedUser );
 		return ResponseEntity.ok().build(); 
-	}*/
+	}
 	
 	
 	@PutMapping(value = "/accepterOrRefuser/{user_id}/{etat}")

@@ -1,13 +1,16 @@
 package com.babysitting.service.Impl;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.babysitting.enm.Role;
 import com.babysitting.exception.NotFoundException;
+import com.babysitting.model.ChangePasswordRequest;
 import com.babysitting.model.User;
 import com.babysitting.repository.UserRepository;
 import com.babysitting.service.UserService;
@@ -35,6 +38,12 @@ public class UserServieImpl implements UserService{
 		User existingUser=userRepository.findById(entity.getId()).orElse(null);
 
 		return userRepository.save(entity);
+	}
+	
+	
+	@Override
+	public User create(User dto) {
+		return userRepository.save(dto);  
 	}
 	
 
@@ -130,11 +139,29 @@ public class UserServieImpl implements UserService{
 		
 	}
 
-	@Override
-	public User create(User dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+
+
+	 @Override
+	 public void changePassword(ChangePasswordRequest request, Principal connectedUser) {
+
+        var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
+
+        // check if the current password is correct
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new IllegalStateException("Wrong password");
+        }
+        // check if the two new passwords are the same
+        if (!request.getNewPassword().equals(request.getConfirmationPassword())) {
+            throw new IllegalStateException("Password are not the same");
+        }
+
+        // update the password
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+
+        // save the new password
+        userRepository.save(user);
+    }		
 
  
  

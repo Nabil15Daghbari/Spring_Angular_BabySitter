@@ -249,14 +249,7 @@ getImageProfilUpload():string{
   if (this.imgUrl) {
     return this.imgUrl.toString();
   }
-  if(this.userConnected && this.userConnected.sexe){
-    if(this.userConnected.sexe.toLowerCase() === 'femme'){
-     this.imgUrl = 'assets/images/users/femme.png' ;
-    }else if(this.userConnected.sexe.toLowerCase() === 'homme'){
-     this.imgUrl = 'assets/images/users/homme.png' ;
-    }
 
- }
 return  'assets/images/users/default.png';
 
 }
@@ -317,11 +310,7 @@ onFileInput(files: FileList | null): void {
 
 getImageProfilByGener():string{
   if(this.userConnected && this.userConnected.sexe){
-    if(this.userConnected.sexe.toLowerCase() === 'femme'){
-     return 'assets/images/users/femme.png' ;
-    }else if(this.userConnected.sexe.toLowerCase() === 'homme'){
-     return 'assets/images/users/homme.png' ;
-  }
+  
 
  }
 return  'assets/images/users/default.png';

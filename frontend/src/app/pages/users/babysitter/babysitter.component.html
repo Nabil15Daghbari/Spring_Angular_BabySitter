@@ -2,8 +2,19 @@
 <br>
 <br>
  
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div class="d-flex gap-2">
+      <button class="btn btn-add btn-primary"   data-toggle="modal"
+      data-target="#verificationModal" (click)="verificationModal(content)">
+       &nbsp;&nbsp;Ajouter
+      </button>
+      
+    </div>
+   </div>
+</div>
 
-
+<br><br>
 <div class="">
   <div class="datatable">
     <table class="table" >
@@ -56,7 +67,7 @@
             {{responsible.email}}
           </td>
           <td>
-            <i *ngIf="responsible.status == 'En attente'" style="color: #ff9800;" class="fas  me-1"> En attente</i>
+            <i *ngIf="responsible.status == '0'" style="color: #ff9800;" class="fas  me-1"> En attente</i>
             <i *ngIf="responsible.status == 'Refuse'" class="fas  text-danger me-1">
               {{responsible.status}}</i>
             <i *ngIf="responsible.status == 'Accept'" class="fas  text-success me-1">
@@ -64,6 +75,8 @@
           </td>
           <td  >
             <ng-container class="ml-auto">
+
+              <button type="button" class="btn btn-info btn-sm btn-rounded"   (click)="onClickEdit(responsible.id! , content)"><i class="fas fa-user-edit"></i></button>&nbsp;
 
               <button  class="dropdown" ngbDropdown placement="bottom-right">
                 <a class="dropdown-toggle card-drop" data-toggle="dropdown" ngbDropdownToggle aria-expanded="false">
@@ -92,3 +105,73 @@
 
 </div>
 
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h5 class="modal-title mt-0">Gérer compte babysitter</h5>
+    
+      <button type="button" class="btn-close" aria-label="Close" (click)="hidenModal()">
+      </button>
+  </div>
+
+    <form [formGroup]="userForm">
+        <div >
+          <div class="row">
+            <div class="col-md-12 p-3">
+              <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                <div class="form-group col-md-5">
+                  <label for="firstname">{{'Nom' }}</label>
+                  <input type="text" formControlName="firstname" class="form-control" id="firstname"
+                    placeholder="Nom" />
+                  
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="lastname">{{'Prénom' }}</label>
+                  <input type="text" formControlName="lastname" class="form-control" id="lastname"
+                    placeholder="Prenom"  />
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 p-3">
+              <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                <div class="form-group col-md-5">
+                  <label for="email">{{'E-mail' }}</label>
+                  <input type="email" formControlName="email" class="form-control" placeholder="E-mail"
+                    id="email" />
+                
+                </div> 
+                
+                <div class="form-group col-xl-5" >
+                  <div class="d-flex align-items-center" style="margin-left: 10px; margin-top: 25px;">
+                   
+                    <h6 class="mr-3 col-xl-3">Genre  : </h6>
+
+                    <label  class="col-xl-5">
+                      <input type="radio" id="r1" id="sexe" formControlName="sexe" [value]="'homme'">&nbsp;
+                      <span class="label-text">Homme</span>
+                    </label>
+                                       <label  class="mr-2">
+                      <input type="radio" id="r2" id="sexe" formControlName="sexe" [value]="'femme'">&nbsp;
+                      <span class="label-text">Femme</span>
+                    </label>
+                  </div>
+              </div> 
+              </div>  
+            </div>
+            <ul class="list-inline wizard mb-0">
+                <li class="next list-inline-item float-end">
+                  <button type="submit" class="btn btn-primary" (click)="OnSaveUser()" >Save</button>
+                </li>
+              </ul>
+          </div>
+         
+        </div>
+        <br>
+      
+      </form>
+
+      
+
+</ng-template>
