@@ -74,6 +74,8 @@
             {{service.status}}
           </td>
           <td  >
+            <button type="button" class="btn btn-danger btn-sm btn-rounded" (click)="onClickDelete(service.id!)"><i
+              class="fas fa-trash-alt"></i></button>&nbsp;
             <ng-container class="ml-auto">
                 <button  class="dropdown" ngbDropdown placement="bottom-right">
                     <a class="dropdown-toggle card-drop" data-toggle="dropdown" ngbDropdownToggle aria-expanded="false">

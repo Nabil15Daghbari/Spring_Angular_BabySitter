@@ -58,6 +58,8 @@ public class AnnouncementServiceImpl  implements  AnnouncementService {
 		announcement.setHeureDebut(dto.getHeureDebut());
 		announcement.setHeureFin(dto.getHeureFin());
 		announcement.setStatus(dto.getStatus());   
+		announcement.setName(dto.getName());
+		announcement.setTel(dto.getTel());
 		  
 		return announcementRepository.save(announcement); 
 	}

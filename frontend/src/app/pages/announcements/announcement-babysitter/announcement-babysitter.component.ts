@@ -34,6 +34,8 @@ export class AnnouncementBabysitterComponent implements OnInit {
     this.getAnnouncementbyrole();
     this.setConnectedUser();
     this.announcementForm=this.formBuilder.group({
+      name: ['', Validators.required],
+      tel: ['', Validators.required],
       nombreEnfant: ['', Validators.required],
       typeService: ['', Validators.required],
       date: ['', Validators.required],

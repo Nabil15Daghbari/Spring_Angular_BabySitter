@@ -29,6 +29,8 @@ public class Announcement {
     private String adresse;
     private String role ;
     private String status ; 
+    private String tel ; 
+    private String name ;
     
     
     @ManyToOne

@@ -16,8 +16,20 @@ export class AnnouncementAdminComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getAnnouncementbyStatus();
+    this.getAnnouncementbyStatus();  
   }
+
+
+  onClickDelete(id: number) {
+    this.announcementService.delete(id).subscribe({
+      next: () => {
+        this.getAnnouncementbyStatus();    
+      },
+      error: error => { 
+      }
+    })
+
+}
 
 
   getAnnouncementbyStatus() {
