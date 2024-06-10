@@ -44,7 +44,7 @@ export class TopbarComponent implements OnInit {
               private imageService:SharedService,
               private imageModelService : ImageModelService,
               private sanitizer: DomSanitizer,
-
+              private cd: ChangeDetectorRef
 
              
               ) {
@@ -73,27 +73,11 @@ export class TopbarComponent implements OnInit {
   this.getProfileImage();
   this.getImageTopBar();
   this.loadImage(); 
-  this.conditionAfficheChat();
   }
 
 
 
-  navigateToChat() {
-    const userId = this.userId ;
-    this.router.navigate(['/chat', userId]);
-  }
 
-
-  conditionAfficheChat(){
-    this.userRole = this.userConnected.role;
-    if(this.userRole==='Supervisor' ){
-      this.isChat=true
-    } else if(this.userRole==='Candidacy'){
-      this.isChat=true
-    }
-  }
-
-  
   loadImage(): void {
     this.imageModelService.getImageByUserId(this.userConnected.id)
       .subscribe(
@@ -186,8 +170,14 @@ getProfileImage():string{
    * Logout the user
    */
   logout() {
+    this.topbarImageUser = null; // Si vous utilisez cette variable pour stocker l'image de l'utilisateur
+    this.image = null; // Réinitialiser l'image de l'utilisateur
+    this.imgUrl = 'assets/images/users/default.png'; // image par défaut
+     // Assurer la mise à jour de l'affichage
+     this.cd.detectChanges();
     localStorage.clear();
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/account/login']);   
+    
 
   }
 

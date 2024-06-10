@@ -16,11 +16,9 @@ export class AnnouncementBabysitterComponent implements OnInit {
   announcementsected: any = {}
   isUpdateMode = false;
   announcement: any;
-
   userConnected: any;
   babysitterIdConnecter: number;
   userConnectedById:any
-
   constructor(
     private announcementService: AnnouncementService,
     private modalService: NgbModal,
@@ -31,7 +29,6 @@ export class AnnouncementBabysitterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAnnouncementbyrole();
     this.setConnectedUser();
     this.announcementForm=this.formBuilder.group({
       name: ['', Validators.required],
@@ -62,6 +59,7 @@ export class AnnouncementBabysitterComponent implements OnInit {
       next: result => {
         this.userConnectedById = result;
         this.babysitterIdConnecter = this.userConnectedById.babysitter.id;
+        this.getAnnouncementbyrole();
       }, 
       error: error => console.error(error)
     });
@@ -69,9 +67,9 @@ export class AnnouncementBabysitterComponent implements OnInit {
 
 
   getAnnouncementbyrole() {
-     this.announcementService.getAnnouncementByRole("BabySitter").subscribe(
+     this.announcementService.findByIdBabysiiter(this.babysitterIdConnecter).subscribe(
       (data) => {
-        this.announcements=data;      
+        this.announcements=data;     
       }
      )
   }

@@ -69,6 +69,16 @@ public class AnnouncementController {
 	    return new ResponseEntity<>(response , HttpStatus.OK);
 	}
 	
+	@GetMapping("/parent/{parentId}")
+	public List<Announcement> getAnnouncementsByParentId(@PathVariable Integer parentId) {
+	        return service.getAnnouncementsByParentId(parentId);
+	 } 
+	
+	@GetMapping("/babysitter/{babysitterId}")
+    public List<Announcement> getAnnouncementsByBabysitterId(@PathVariable Integer babysitterId) {
+        return service.getAnnouncementsByBabysitterId(babysitterId); 
+    }
+	
 	@GetMapping("/findByStatus")
 	public ResponseEntity<List<Announcement>> findAllBy( @RequestParam String status){
 		List<Announcement> response = service.findAllByStatus(status);
@@ -82,11 +92,11 @@ public class AnnouncementController {
 	 }
 	 
 	 
-	   @GetMapping("/findByStatusAndRole")
-		public ResponseEntity<List<Announcement>> findByStatusAndRole( @RequestParam String status ,  @RequestParam String role){
+	 @GetMapping("/findByStatusAndRole")
+	 public ResponseEntity<List<Announcement>> findByStatusAndRole( @RequestParam String status ,  @RequestParam String role){
 		   System.out.println(status + role);
 			List<Announcement> response = service.findByStatusAndRole(status , role);
 		    return new ResponseEntity<>(response , HttpStatus.OK);
-		}
+	}
 
 }

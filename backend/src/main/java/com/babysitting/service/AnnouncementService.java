@@ -17,6 +17,10 @@ public interface AnnouncementService extends BaseService<Announcement, Integer> 
 
 	List<Announcement> findByStatusAndRole(String status, String role);
 
-	Announcement create(@Valid Announcement dto, Integer parentId, Integer babysiiterId);     
+	Announcement create(@Valid Announcement dto, Integer parentId, Integer babysiiterId);
+
+	List<Announcement> getAnnouncementsByBabysitterId(Integer babysitterId);
+
+	List<Announcement> getAnnouncementsByParentId(Integer parentId);         
 
 }

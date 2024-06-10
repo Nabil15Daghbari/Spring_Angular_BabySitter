@@ -107,6 +107,17 @@ public class AnnouncementServiceImpl  implements  AnnouncementService {
 		return this.announcementRepository.findByStatusAndRole(status , role);
 	}
 
+	@Override
+	public List<Announcement> getAnnouncementsByBabysitterId(Integer babysitterId) {
+		return announcementRepository.findByBabysitterId(babysitterId);
+
+	}
+
+	@Override
+	public List<Announcement> getAnnouncementsByParentId(Integer parentId) {
+		return announcementRepository.findByParentId(parentId);
+	}
+
 	
 	
 	

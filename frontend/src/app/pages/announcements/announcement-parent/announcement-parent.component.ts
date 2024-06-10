@@ -31,7 +31,6 @@ export class AnnouncementParentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAnnouncementbyrole();
     this.setConnectedUser();
     this.announcementForm=this.formBuilder.group({
       nombreEnfant: ['', Validators.required],
@@ -61,6 +60,7 @@ export class AnnouncementParentComponent implements OnInit {
         this.userConnectedById = result;
         console.log( this.userConnectedById )        
         this.idParentConnecter = this.userConnectedById?.parent?.id;
+        this.getAnnouncementbyrole();
       }, 
       error: error => console.error(error)
     });
@@ -69,7 +69,7 @@ export class AnnouncementParentComponent implements OnInit {
 
 
   getAnnouncementbyrole() {
-     this.announcementService.getAnnouncementByRole("Parent").subscribe(
+     this.announcementService.findByIdParent(this.idParentConnecter).subscribe(
       (data) => {
         this.announcements=data;      
       }

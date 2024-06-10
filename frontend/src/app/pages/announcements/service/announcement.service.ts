@@ -45,6 +45,16 @@ export class AnnouncementService {
     return this.http.get<any>(url);
   }
 
+  findByIdParent(parentId: number): Observable<any> {
+    let url = `${this.baseUrl()}/parent/${parentId}`;
+    return this.http.get<any>(url);
+  }
+
+  findByIdBabysiiter(babysitter: number): Observable<any> { 
+    let url = `${this.baseUrl()}/babysitter/${babysitter}`; 
+    return this.http.get<any>(url);
+  }
+
   findAll(): Observable<Array<any>> {
     let url = this.baseUrl();
     return this.http.get<Array<any>>(url);
